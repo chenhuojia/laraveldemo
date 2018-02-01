@@ -2,7 +2,6 @@
 namespace App\Service\Admin;
 use App\Models\AdminModel;
 use Illuminate\Support\Facades\Hash;
-use App\Exceptions\Api\MissException;
 use App\Models\Traits\RbacCheck;
 class AdminServer
 {
@@ -75,11 +74,11 @@ class AdminServer
     public function Login($request){       
       $admin=AdminModel::where('name','=',$request->username)->first();
       if (empty($admin)){
-          //throw new MissException(['管理员不存在']);
+          (new ActionLogsService())->loginActionLogCreate($request);
           return viewError('管理员不存在','admin.login');
       }
       if(!Hash::check($request->password,$admin->password)){
-          //throw new MissException(['管理员密码不匹配']);
+          (new ActionLogsService())->loginActionLogCreate($request);
           return viewError('管理员密码不匹配','admin.login');
       }
       $admin->update([
@@ -89,6 +88,7 @@ class AdminServer
       //$admin->increment('login_count');
       $request->session()->put(config('extra.admin.admin_cache_key'),$admin);
       $this->createRuleAndMenu($admin);
+      (new ActionLogsService())->loginActionLogCreate($request,true);
       return redirect()->route('admin.index');
     }
     

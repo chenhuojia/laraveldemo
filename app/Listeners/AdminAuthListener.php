@@ -3,12 +3,14 @@ namespace App\Listeners;
 use App\Events\AdminAuth;
 use Route;
 use App\Models\Traits\RbacCheck;
+use App\Service\Admin\ActionLogsService;
 class AdminAuthListener
 {
     use RbacCheck;
-    public function __construct()
+    protected $actionLogsService;
+    public function __construct(ActionLogsService $actionLogsService)
     {
-        //
+        $this->actionLogsService=$actionLogsService;
     }
     
     /**
@@ -19,6 +21,7 @@ class AdminAuthListener
      */
     public function handle(AdminAuth $event)
     {   
+        $this->actionLog($event->post);
         return $this->checkToken();
     }
     
@@ -35,6 +38,14 @@ class AdminAuthListener
          return ['error'=>'请先登录','code'=>401,'url'=>'admin.login'];
     }
     
+    
+    private function actionLog($request){
+        /**记录用户操作日志**/
+        if(in_array($request->method(),['POST','PUT','PATCH','DELETE']))
+        {
+            $this->actionLogsService->mudelActionLogCreate($request);
+        }
+    }
 
 }
 

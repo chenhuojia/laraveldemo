@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Exceptions\BaseException;
+use Illuminate\Support\Facades\Log;
 class Handler extends ExceptionHandler
 {
     /**
@@ -49,10 +50,11 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
        // return parent::render($request, $exception);
-        /* if(config('app.debug')){
+        if(config('app.debug')){
             return parent::render($request, $exception);
-        } */
-        return $this->handle($request, $exception);
+        }else{
+           return $this->handle($request, $exception);
+        }
     }
     
     public function handle($request, Exception $e){
@@ -63,8 +65,17 @@ class Handler extends ExceptionHandler
                 "errorcode" => $e->errorcode,
             ];
             return response()->json($result,$e->code);
+        }else{
+            $this->code=500;
+            $this->msg='服务器内部错误';
+            $this->errorcode=99999;
+            $this->errorLog($e);
         }
-        return parent::render($request, $e);
+    }
+    
+    
+    private function errorLog(\Exception $e){
+        return Log::error($e->getMessage()); 
     }
 
 }
