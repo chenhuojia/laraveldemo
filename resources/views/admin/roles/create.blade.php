@@ -5,7 +5,7 @@
     <h1 class="page-title">添加角色</h1>
 </div>
 <ul class="breadcrumb">
-    <li><a href="/index">Home</a> <span class="divider">/</span></li>
+    <li><a href="/admin/index">Home</a> <span class="divider">/</span></li>
     <li class="active">添加角色</li>
 </ul>
 <div class="container-fluid">

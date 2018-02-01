@@ -4,7 +4,7 @@
     <h1 class="page-title">后台首页</h1>
 </div>
 <ul class="breadcrumb">
-    <li><a href="/index">Home</a> <span class="divider">/</span></li>
+    <li><a href="/admin/index">Home</a> <span class="divider">/</span></li>
     <li class="active">Index</li>
 </ul>
 

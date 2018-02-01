@@ -1,18 +1,30 @@
 <ul id="dashboard-menu" class="nav nav-list collapse in">
-     <li class="">
-     	<a class="home" href="javasctipt:" status=0>首页</a>
-     	 <ul class="itemslist" style="display: none">
-     	 	<li><a class="" href="/index">首页</a></li>
-     	</ul>
-     </li> 
-    <li class="">
-     	<a class="home" href="javasctipt:" status=0>后台授权</a>
-     	 <ul class="itemslist" style="display: none">
-         	<li><a href="/admin/admins">管理員列表</a></li>
-         	<li><a href="/admin/role">角色列表</a></li>
-         	<li><a href="/admin/rule">权限列表</a></li>
-     	</ul>
-     </li>     
+	@php
+    	$menus = session('admin_menu'); 
+	@endphp
+	@foreach($menus as $k=>$v)
+    	@if($v['route']=='admin.index')
+         <li class="">
+         	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
+         	 <ul class="itemslist" style="display: none">
+         	 	<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	</ul>
+         </li>
+       	@else
+        <li class="">
+         	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
+         	 <ul class="itemslist" style="display: none">
+         	 	@if(isset($v['children']))
+         	 		@foreach($v['children'] as $kk=>$vv)
+         	 			<li><a href="{{route($vv['route'])}}">{{$vv['name']}}</a></li>
+         	 		@endforeach
+         	 	@else
+         	 		<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	 	@endif
+         	</ul>         	
+         </li>
+        @endif
+    @endforeach     
 </ul>    
 
 <script>

@@ -19,6 +19,7 @@ namespace App\Models\Traits;
 use App\Handlers\Tree;
 use App\Service\Admin\RulesServer;
 use Cache;
+use App\Models\RulesModel;
 
 trait RbacCheck
 {
@@ -63,14 +64,14 @@ trait RbacCheck
     {   
         $this->checkLoginAdmin();
         $menu_cache = $this->id . $this->menu_cache;
-       /*  if (!Cache::tags(['rbac', 'menus'])->has($menu_cache))
-        { */
+        if (!Cache::tags(['rbac', 'menus'])->has($menu_cache))
+        { 
             $rules = [];
             //判断是否是超级管理员用户组
             if (in_array(1, $this->roles->pluck('id')->toArray()))
             {
                 //超级管理员用户组获取全部权限数据
-                $rules = (new RulesServer())->getRulesAndPublic()->toArray();
+                $rules = (new RulesServer((new RulesModel())))->getRulesAndPublic()->toArray();
 
             } else {
     
@@ -87,12 +88,13 @@ trait RbacCheck
             }
             /**将权限路由存入缓存中*/
             Cache::tags(['rbac', 'menus'])->put($menu_cache, $rules,86400);
-       // }
-
-
+        }
         $rules = Cache::tags(['rbac', 'menus'])->get($menu_cache);
-
-        return Tree::array_tree($rules);
+        $tree=Tree::array_tree($rules);
+        if (!session('admin_menu')){
+            session(['admin_menu'=>$tree]);
+        }
+        return $tree;
     }
 
     /**
@@ -105,15 +107,20 @@ trait RbacCheck
     }
     
     public function createRuleAndMenu($admin){
-        $this->roles=$admin->roles()->get();
+        //$this->roles=$admin->roles()->get();
         $this->getRules();
+        $this->getMenus();
         //dump($this->getMenus());
         //return $this->roles;
     }
     
     public  function checkLoginAdmin(){
         if($admin=session(config('extra.admin.admin_cache_key'))){
-            $this->id=$admin['id'];
+            $this->id=$admin->id;
+            if (!$this->roles=session('admin_roles')){
+                $this->roles=$admin->roles()->get();
+                session(['admin_roles'=>$this->roles]);
+            }
             return true;
         }
         return false;

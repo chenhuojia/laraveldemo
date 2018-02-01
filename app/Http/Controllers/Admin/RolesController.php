@@ -53,12 +53,12 @@ class RolesController extends Controller
     /**
      * 修改页面
      * method get
-     * url admin/roles/{admin}
+     * url admin/roles/{admin}/edit
      * **/
     
     public function edit(Request $request,$id){
         $role=$this->RolesServer->ById($id);
-        return view('admin.roles.show',['role'=>$role]);
+        return view('admin.roles.edit',['role'=>$role]);
     }
     
     /**

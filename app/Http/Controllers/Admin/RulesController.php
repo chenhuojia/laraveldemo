@@ -52,13 +52,13 @@ class RulesController extends Controller
     /**
      * 修改页面
      * method get
-     * url admin/rule/{admin}
+     * url admin/rule/{admin}/edit
      * **/
     
     public function edit(Request $request,$id){
         $rules=$this->RuleServer->getRulesTree();
         $rule = $this->RuleServer->ById($id);
-        return view('admin.rules.show',['rules'=>$rules,'rule'=>$rule]);
+        return view('admin.rules.edit',['rules'=>$rules,'rule'=>$rule]);
     }
     
     /**

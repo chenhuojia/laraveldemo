@@ -67,7 +67,7 @@
                 	<li><a href="/admin/login" class="hidden-phone visible-tablet visible-desktop" role="button">Login</a></li>
             	@endif
             </ul>
-            <a class="brand" href="/index"><span class="first">Blog</span> <span class="second">Admin</span></a>
+            <a class="brand" href="/admin/index"><span class="first">Blog</span> <span class="second">Admin</span></a>
         </div>
     </div>
 

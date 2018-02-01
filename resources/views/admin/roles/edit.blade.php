@@ -5,7 +5,7 @@
     <h1 class="page-title">更新管理员</h1>
 </div>
 <ul class="breadcrumb">
-    <li><a href="/index">Home</a> <span class="divider">/</span></li>
+    <li><a href="/admin/index">Home</a> <span class="divider">/</span></li>
     <li class="active">更新管理员</li>
 </ul>
 <div class="container-fluid">

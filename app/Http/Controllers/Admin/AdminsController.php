@@ -54,7 +54,7 @@ class AdminsController extends Controller
     /**
      * 修改页面
      * method get
-     * url admin/admins/{admin}
+     * url admin/admins/{admin}/edit
      * **/
     
     public function edit(Request $request,$id){
@@ -62,7 +62,7 @@ class AdminsController extends Controller
         $admin=AdminModel::find($id);
         $roles=$this->RolesServer->getRoles();
         $rolesID=$admin->roles->pluck('id')->toArray();
-        return view('admin.admins.show',['admin'=>$admin,'roles'=>$roles,'rolesID'=>$rolesID]);
+        return view('admin.admins.edit',['admin'=>$admin,'roles'=>$roles,'rolesID'=>$rolesID]);
     }
     
     /**

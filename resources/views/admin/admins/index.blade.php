@@ -5,7 +5,7 @@
    <h1 class="page-title">管理員列表</h1>
 </div>
 <ul class="breadcrumb">
-    <li><a href="/index">Home</a> <span class="divider">/</span></li>
+    <li><a href="/admin/index">Home</a> <span class="divider">/</span></li>
     <li class="active">List</li>
 </ul>
 <div class="container-fluid">
@@ -22,7 +22,7 @@
                   <th>用户名</th>
                   <th>用户权限</th>
                   <th>注册ip</th>
-                  <th>最后登录时间</th>
+                  <th>最后登录ip</th>
                   <th>状态</th>
                   <th style="width: 26px;"></th>
                 </tr>
@@ -37,7 +37,7 @@
                       @endforeach
                   </td>
                   <td>{{$item['create_ip']}}</td>
-                  <td>{{$item['last_login_time']}}</td>
+                  <td>{{$item['last_login_ip']}}</td>
                   <td>
                     @if($item->status == 1)
                         <span class="text-navy">正常</span>

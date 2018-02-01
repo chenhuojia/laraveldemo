@@ -87,7 +87,7 @@ class AdminServer
         'last_login_ip'=>$request->ip(),
       ]);
       //$admin->increment('login_count');
-      $request->session()->put(config('extra.admin.admin_cache_key'),$admin->toArray());
+      $request->session()->put(config('extra.admin.admin_cache_key'),$admin);
       $this->createRuleAndMenu($admin);
       return redirect()->route('admin.index');
     }

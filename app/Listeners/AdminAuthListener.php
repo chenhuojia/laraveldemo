@@ -26,7 +26,6 @@ class AdminAuthListener
     private  function checkToken(){
         if($this->checkLoginAdmin()){
             $route=Route::currentRouteName(); 
-            //dd($route,$this->getRules());
             if(!in_array($route,$this->getRules())){
                  return ['error'=>'你没有权限','code'=>403,'url'=>'admin.index'];
             }else{
