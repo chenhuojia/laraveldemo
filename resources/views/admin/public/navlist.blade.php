@@ -14,11 +14,7 @@
         <li class="">
          	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
          	 <ul class="itemslist" style="display: none">
-         	 	@if(isset($v['children']))
-         	 		
-         	 	@else
-         	 		<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
-         	 	@endif
+         	 	
          	</ul>         	
          </li>
         @endif
