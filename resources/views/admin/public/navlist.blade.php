@@ -4,8 +4,10 @@
 	@endphp
 	@foreach($menus as $k=>$v)
     	@php
-    		dd($v);
+    		dd(route($v['route']));
     	@endphp
+    	
+    	
     @endforeach     
 </ul>    
 
