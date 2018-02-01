@@ -17,7 +17,6 @@
 namespace App\Models\Traits;
 
 use App\Handlers\Tree;
-use App\Service\Admin\RulesServer;
 use Cache;
 use App\Models\RulesModel;
 
@@ -71,7 +70,7 @@ trait RbacCheck
             if (in_array(1, $this->roles->pluck('id')->toArray()))
             {
                 //超级管理员用户组获取全部权限数据
-                $rules = (new RulesServer((new RulesModel())))->getRulesAndPublic()->toArray();
+                $rules = RulesModel::orderBy('sort','asc')->where('is_hidden',1)->get()->toArray();
 
             } else {
     

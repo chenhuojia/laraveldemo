@@ -84,13 +84,6 @@ class RulesServer
         return true;
     }
     
-    
-    public function getRulesAndPublic(){
-        return $this->model->orderBy('sort','asc')->where('is_hidden',1)->get();
-    }
-    
-    public function getMenus(){
-        
-    }
+
 }
 
