@@ -3,10 +3,25 @@
     	$menus = session('admin_menu'); 
 	@endphp
 	@foreach($menus as $k=>$v)
-    	@php
-    		dd(route($v['route']));
-    	@endphp
-    	
+    	@if($v['route']=='admin.index')
+         <li class="">
+         	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
+         	 <ul class="itemslist" style="display: none">
+         	 	<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	</ul>
+         </li>
+       	@else
+        <li class="">
+         	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
+         	 <ul class="itemslist" style="display: none">
+         	 	@if(isset($v['children']))
+         	 		
+         	 	@else
+         	 		<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	 	@endif
+         	</ul>         	
+         </li>
+        @endif
     	
     @endforeach     
 </ul>    
