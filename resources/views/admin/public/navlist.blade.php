@@ -7,7 +7,7 @@
          <li class="">
          	<a class="home" href="javasctipt:" status=0>{{$v['name']}}</a>
          	 <ul class="itemslist" style="display: none">
-         	 	<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	 	<li><a class="" href="{{URL::route($v['route'])}}">{{$v['name']}}</a></li>
          	</ul>
          </li>
        	@else
@@ -16,10 +16,10 @@
          	 <ul class="itemslist" style="display: none">
          	 	@if(isset($v['children']))
          	 		@foreach($v['children'] as $kk=>$vv)
-         	 			<li><a href="{{route($vv['route'])}}">{{$vv['name']}}</a></li>
+         	 			<li><a href="{{URL::route($vv['route'])}}">{{$vv['name']}}</a></li>
          	 		@endforeach
          	 	@else
-         	 		<li><a class="" href="{{route($v['route'])}}">{{$v['name']}}</a></li>
+         	 		<li><a class="" href="{{URL::route($v['route'])}}">{{$v['name']}}</a></li>
          	 	@endif
          	</ul>         	
          </li>

@@ -21,7 +21,6 @@ class LoginController extends Controller
      * url  admin/login
      * **/
     public function index(Request $request){
-
         return view('admin.index.login');
     }
     
