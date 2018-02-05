@@ -16,7 +16,7 @@
 
 namespace App\Service\Admin;
 use Route;
-use Zhuzhichao\IpLocationZh\Ip;
+//use Zhuzhichao\IpLocationZh\Ip;
 use App\Models\ActionLogModel;
 use App\Models\RulesModel;
 
@@ -48,7 +48,7 @@ class ActionLogsService
 
         $ip = $request->getClientIp();
 
-        $address = Ip::find($ip);
+        $address = '';
 
         $action = $status ? "管理员: {$admin->name} 登录成功" : " 登录失败,登录的账号为：{$request->username}　密码为：{$request->password}";
 
