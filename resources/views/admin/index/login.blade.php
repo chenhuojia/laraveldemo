@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" type="text/css" href="/admin/lib/bootstrap/css/bootstrap.css">
     
-    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="/admin/stylesheets/theme.css">
     <link rel="stylesheet" href="/admin/lib/font-awesome/css/font-awesome.css">
 
     <script src="/admin/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
@@ -60,7 +60,7 @@
         <div class="navbar-inner">
                 <ul class="nav pull-right">
                 </ul>
-                <a class="brand" href="/index"><span class="first">Blog</span> <span class="second">Admin</span></a>
+                <a class="brand" href="/admin/index"><span class="first">Blog</span> <span class="second">Admin</span></a>
         </div>
     </div>
         <div class="row-fluid">
