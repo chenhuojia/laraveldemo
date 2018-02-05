@@ -54,7 +54,7 @@ class ActionLogsService
 
         $data = [            
             'ip'=> $ip,
-            'address'=> $address[0].$address[1].$address[2],
+            'address'=> '',
             'action'=> $action,
         ];
 
