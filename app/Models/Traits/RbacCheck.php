@@ -89,8 +89,7 @@ trait RbacCheck
             Cache::tags(['rbac', 'menus'])->put($menu_cache, $rules,86400);
         }
         $rules = Cache::tags(['rbac', 'menus'])->get($menu_cache);
-        $tree=Tree::array_tree($rules);
-        dd($tree,$rules);
+        $tree=Tree::array_tree($rules);       
         if (!session('admin_menu')){
             session(['admin_menu'=>$tree]);
         }
