@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-01-31 18:12:19
+-- Generation Time: 2018-03-15 22:18:45
 -- 服务器版本： 10.1.9-MariaDB
 -- PHP Version: 7.0.1
 
@@ -17,16 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laraverdemo`
+-- Database: `school`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `action_logs`
+-- 表的结构 `chj_action_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `action_logs` (
+CREATE TABLE IF NOT EXISTS `chj_action_logs` (
   `id` int(10) unsigned NOT NULL,
   `admin_id` int(11) DEFAULT NULL COMMENT '管理员id',
   `data` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '操作内容',
@@ -38,10 +38,10 @@ CREATE TABLE IF NOT EXISTS `action_logs` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admins`
+-- 表的结构 `chj_admins`
 --
 
-CREATE TABLE IF NOT EXISTS `admins` (
+CREATE TABLE IF NOT EXISTS `chj_admins` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
@@ -55,20 +55,20 @@ CREATE TABLE IF NOT EXISTS `admins` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 转存表中的数据 `admins`
+-- 转存表中的数据 `chj_admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `password`, `avatr`, `login_count`, `create_ip`, `last_login_ip`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `chj_admins` (`id`, `name`, `password`, `avatr`, `login_count`, `create_ip`, `last_login_ip`, `status`, `created_at`, `updated_at`) VALUES
 (3, 'admin', '$2y$10$n2IeKkWuJOHtDRA.hQ1ymujdzeiAF5eKPg2LphIRMrZZMJP4GMAMm', NULL, 3, '127.0.0.1', '127.0.0.1', 1, '2018-01-26 23:20:22', '2018-01-31 00:50:16'),
 (5, 'root', '$2y$10$i2TTBAPQYN4tfksYkPDXF.rePiSk.8bgNKs/hirCQyjBJMrBS1n.q', NULL, 123, '127.0.0.1', '127.0.0.1', 1, '2018-01-29 23:28:42', '2018-01-31 01:13:04');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin_role`
+-- 表的结构 `chj_admin_role`
 --
 
-CREATE TABLE IF NOT EXISTS `admin_role` (
+CREATE TABLE IF NOT EXISTS `chj_admin_role` (
   `id` int(10) unsigned NOT NULL,
   `admin_id` int(11) NOT NULL COMMENT '管理员id',
   `role_id` int(11) NOT NULL COMMENT '角色id',
@@ -77,20 +77,20 @@ CREATE TABLE IF NOT EXISTS `admin_role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 转存表中的数据 `admin_role`
+-- 转存表中的数据 `chj_admin_role`
 --
 
-INSERT INTO `admin_role` (`id`, `admin_id`, `role_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `chj_admin_role` (`id`, `admin_id`, `role_id`, `created_at`, `updated_at`) VALUES
 (1, 5, 1, '2018-01-31 00:10:41', '2018-01-31 00:10:41'),
 (2, 3, 2, '2018-01-31 00:10:49', '2018-01-31 00:10:49');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `migrations`
+-- 表的结构 `chj_migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
+CREATE TABLE IF NOT EXISTS `chj_migrations` (
   `id` int(10) unsigned NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
@@ -99,10 +99,10 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `roles`
+-- 表的结构 `chj_roles`
 --
 
-CREATE TABLE IF NOT EXISTS `roles` (
+CREATE TABLE IF NOT EXISTS `chj_roles` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色名称',
   `remark` text COLLATE utf8mb4_unicode_ci COMMENT '角色描述',
@@ -113,20 +113,20 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 转存表中的数据 `roles`
+-- 转存表中的数据 `chj_roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `remark`, `order`, `status`, `created_at`, `updated_at`) VALUES
+INSERT INTO `chj_roles` (`id`, `name`, `remark`, `order`, `status`, `created_at`, `updated_at`) VALUES
 (1, '超级管理员', '超级管理员', 255, 1, '2018-01-30 23:51:49', '2018-01-30 23:51:49'),
 (2, '管理员', '管理员', 0, 1, '2018-01-30 23:51:58', '2018-01-30 23:51:58');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `role_auth`
+-- 表的结构 `chj_role_auth`
 --
 
-CREATE TABLE IF NOT EXISTS `role_auth` (
+CREATE TABLE IF NOT EXISTS `chj_role_auth` (
   `id` int(10) unsigned NOT NULL,
   `role_id` int(11) NOT NULL COMMENT '角色id',
   `rule_id` int(11) NOT NULL COMMENT '权限id',
@@ -135,10 +135,10 @@ CREATE TABLE IF NOT EXISTS `role_auth` (
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 转存表中的数据 `role_auth`
+-- 转存表中的数据 `chj_role_auth`
 --
 
-INSERT INTO `role_auth` (`id`, `role_id`, `rule_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `chj_role_auth` (`id`, `role_id`, `rule_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2018-01-31 00:10:05', '2018-01-31 00:10:05'),
 (2, 1, 2, '2018-01-31 00:10:05', '2018-01-31 00:10:05'),
 (3, 1, 3, '2018-01-31 00:10:05', '2018-01-31 00:10:05'),
@@ -172,10 +172,10 @@ INSERT INTO `role_auth` (`id`, `role_id`, `rule_id`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
--- 表的结构 `rules`
+-- 表的结构 `chj_rules`
 --
 
-CREATE TABLE IF NOT EXISTS `rules` (
+CREATE TABLE IF NOT EXISTS `chj_rules` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '权限名称',
   `route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '权限路由',
@@ -189,10 +189,10 @@ CREATE TABLE IF NOT EXISTS `rules` (
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- 转存表中的数据 `rules`
+-- 转存表中的数据 `chj_rules`
 --
 
-INSERT INTO `rules` (`id`, `name`, `route`, `parent_id`, `is_hidden`, `sort`, `status`, `created_at`, `updated_at`, `fonts`) VALUES
+INSERT INTO `chj_rules` (`id`, `name`, `route`, `parent_id`, `is_hidden`, `sort`, `status`, `created_at`, `updated_at`, `fonts`) VALUES
 (1, '后台首页', 'admin.index', 0, 1, 0, 1, '2018-01-30 23:52:34', '2018-01-30 23:52:34', NULL),
 (2, '后台授权', NULL, 0, 1, 0, 1, '2018-01-30 23:53:16', '2018-01-30 23:53:16', NULL),
 (3, '管理员管理', 'admins.index', 2, 0, 255, 1, '2018-01-30 23:54:03', '2018-01-31 00:03:27', NULL),
@@ -219,10 +219,10 @@ INSERT INTO `rules` (`id`, `name`, `route`, `parent_id`, `is_hidden`, `sort`, `s
 -- --------------------------------------------------------
 
 --
--- 表的结构 `user`
+-- 表的结构 `chj_user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE IF NOT EXISTS `chj_user` (
   `id` int(11) NOT NULL,
   `openid` varchar(50) NOT NULL COMMENT '微信openID',
   `nickname` varchar(50) DEFAULT NULL COMMENT '微信昵称',
@@ -233,10 +233,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `user`
+-- 转存表中的数据 `chj_user`
 --
 
-INSERT INTO `user` (`id`, `openid`, `nickname`, `extend`, `delete_time`, `create_time`, `update_time`) VALUES
+INSERT INTO `chj_user` (`id`, `openid`, `nickname`, `extend`, `delete_time`, `create_time`, `update_time`) VALUES
 (1, '12345544', '323', NULL, NULL, NULL, NULL),
 (2, '123455434', NULL, NULL, NULL, NULL, NULL),
 (4, 'oJxgY42wBPrgJ1Pa2hSPut3mn1aI', NULL, NULL, NULL, NULL, NULL);
@@ -246,54 +246,54 @@ INSERT INTO `user` (`id`, `openid`, `nickname`, `extend`, `delete_time`, `create
 --
 
 --
--- Indexes for table `action_logs`
+-- Indexes for table `chj_action_logs`
 --
-ALTER TABLE `action_logs`
+ALTER TABLE `chj_action_logs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `action_logs_admin_id_index` (`admin_id`),
   ADD KEY `action_logs_type_index` (`type`);
 
 --
--- Indexes for table `admins`
+-- Indexes for table `chj_admins`
 --
-ALTER TABLE `admins`
+ALTER TABLE `chj_admins`
   ADD PRIMARY KEY (`id`),
   ADD KEY `admins_status_index` (`status`);
 
 --
--- Indexes for table `admin_role`
+-- Indexes for table `chj_admin_role`
 --
-ALTER TABLE `admin_role`
+ALTER TABLE `chj_admin_role`
   ADD PRIMARY KEY (`id`),
   ADD KEY `admin_role_admin_id_index` (`admin_id`),
   ADD KEY `admin_role_role_id_index` (`role_id`);
 
 --
--- Indexes for table `migrations`
+-- Indexes for table `chj_migrations`
 --
-ALTER TABLE `migrations`
+ALTER TABLE `chj_migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `roles`
+-- Indexes for table `chj_roles`
 --
-ALTER TABLE `roles`
+ALTER TABLE `chj_roles`
   ADD PRIMARY KEY (`id`),
   ADD KEY `roles_name_index` (`name`(191)),
   ADD KEY `roles_status_index` (`status`);
 
 --
--- Indexes for table `role_auth`
+-- Indexes for table `chj_role_auth`
 --
-ALTER TABLE `role_auth`
+ALTER TABLE `chj_role_auth`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_auth_role_id_index` (`role_id`),
   ADD KEY `role_auth_rule_id_index` (`rule_id`);
 
 --
--- Indexes for table `rules`
+-- Indexes for table `chj_rules`
 --
-ALTER TABLE `rules`
+ALTER TABLE `chj_rules`
   ADD PRIMARY KEY (`id`),
   ADD KEY `rules_name_index` (`name`(191)),
   ADD KEY `rules_parent_id_index` (`parent_id`),
@@ -301,9 +301,9 @@ ALTER TABLE `rules`
   ADD KEY `rules_status_index` (`status`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `chj_user`
 --
-ALTER TABLE `user`
+ALTER TABLE `chj_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `openid` (`openid`);
 
@@ -312,44 +312,44 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `action_logs`
+-- AUTO_INCREMENT for table `chj_action_logs`
 --
-ALTER TABLE `action_logs`
+ALTER TABLE `chj_action_logs`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `admins`
+-- AUTO_INCREMENT for table `chj_admins`
 --
-ALTER TABLE `admins`
+ALTER TABLE `chj_admins`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `admin_role`
+-- AUTO_INCREMENT for table `chj_admin_role`
 --
-ALTER TABLE `admin_role`
+ALTER TABLE `chj_admin_role`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT for table `chj_migrations`
 --
-ALTER TABLE `migrations`
+ALTER TABLE `chj_migrations`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT for table `chj_roles`
 --
-ALTER TABLE `roles`
+ALTER TABLE `chj_roles`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `role_auth`
+-- AUTO_INCREMENT for table `chj_role_auth`
 --
-ALTER TABLE `role_auth`
+ALTER TABLE `chj_role_auth`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
--- AUTO_INCREMENT for table `rules`
+-- AUTO_INCREMENT for table `chj_rules`
 --
-ALTER TABLE `rules`
+ALTER TABLE `chj_rules`
   MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `chj_user`
 --
-ALTER TABLE `user`
+ALTER TABLE `chj_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
