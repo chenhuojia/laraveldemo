@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
             $result = [
                 "msg"    => $e->msg,
                 "errorcode" => $e->errorcode,
-            ];
+            ];            
             return response()->json($result,$e->code);
         }else{
             $this->code=500;

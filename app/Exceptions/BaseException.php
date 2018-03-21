@@ -22,7 +22,7 @@ class BaseException extends \Exception
             $this->errorcode=$data['errorcode'];
         }
         $this->message=$this->msg;
-        parent::__construct();
+        parent::__construct($this->message,$this->code);
     }
 }
 
