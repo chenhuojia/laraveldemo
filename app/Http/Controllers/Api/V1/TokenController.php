@@ -10,8 +10,7 @@ class TokenController extends Controller
 {
     
     
-    public function getToken(){
-        return 1112;
+    public function getToken(){ 
         (new TokenGetValidate())->goCheck();
         $code=request('code');
         $token=(new UserTokenService($code))->getToken();
@@ -20,7 +19,7 @@ class TokenController extends Controller
     
     public function getUser(){
         //47673373dde21bb9441283a9c2b4e97d
-          
+         return 111;
         return TokenService::getCurrentTokenVar('openid');
     }
 }

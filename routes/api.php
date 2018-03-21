@@ -21,7 +21,7 @@ $api=app('Dingo\Api\Routing\Router');
 $api->version('v1',function ($api){
     $api->group(['namespace'=>'App\Http\Controllers\Api'],function ($api){
         //不需要token权限
-        $api->get('getToken','V1\TokenController@getToken');
+        $api->get('user-token','V1\TokenController@getToken');
     
         //需要token权限
         $api->group(['middleware'=>['userAuth']],function ($api){

@@ -3,6 +3,7 @@ namespace App\Service\Admin;
 use App\Models\AdminModel;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Traits\RbacCheck;
+use App\Exceptions\Api\ParmaeterException;
 class AdminServer
 {
     use RbacCheck;
@@ -71,7 +72,8 @@ class AdminServer
     }
     
     
-    public function Login($request){       
+    public function Login($request){  
+       throw new ParmaeterException();
       $admin=AdminModel::where('name','=',$request->username)->first();
       if (empty($admin)){
           (new ActionLogsService())->loginActionLogCreate($request);
