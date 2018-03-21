@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Service\Api\UserTokenService;
@@ -11,7 +11,7 @@ class TokenController extends Controller
     
     
     public function getToken(){
-        return 111;
+        return 1112;
         (new TokenGetValidate())->goCheck();
         $code=request('code');
         $token=(new UserTokenService($code))->getToken();

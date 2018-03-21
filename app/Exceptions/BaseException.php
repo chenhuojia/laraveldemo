@@ -13,11 +13,12 @@ class BaseException extends \Exception
             $this->code=$data['code'];
         }
         if (array_key_exists('msg', $data)){
-            $this->msg=$data['msg'];
+            $this->msg=$data['msg'];  
         }
         if (array_key_exists('errorcode', $data)){
             $this->errorcode=$data['errorcode'];
         }
+        $this->message=$this->msg;       
         parent::__construct();
     }
 }

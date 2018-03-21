@@ -17,15 +17,18 @@
     return $request->user();
 }); */
 
-
-Route::group(['namespace'=>'Api','prefix' =>'{version}'],function (){
-    //不需要token权限
-    Route::get('getToken','TokenController@getToken');
+$api=app('Dingo\Api\Routing\Router');
+$api->version('v1',function ($api){
+    $api->group(['namespace'=>'App\Http\Controllers\Api'],function ($api){
+        //不需要token权限
+        $api->get('getToken','V1\TokenController@getToken');
     
-    //需要token权限
-    Route::middleware(['userAuth'])->group(function (){
+        //需要token权限
+        $api->group(['middleware'=>['userAuth']],function ($api){
         
-        Route::post('getUser','TokenController@getUser');
+            $api->post('getUser','TokenController@getUser');
         
+        });
     });
 });
+
