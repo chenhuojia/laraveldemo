@@ -9,7 +9,7 @@ class UserTokenService extends TokenService
 
     protected $code;
     protected $appID;
-    protected $openid;
+    protected $openid='ox0nr0I_KoDb5WFBbXw42FapGXfc';
     protected $appSecret;
     protected $loginUrl;
     protected $user_id;
@@ -93,7 +93,7 @@ class UserTokenService extends TokenService
         if ($user){
             $this->user_id=$user->id;
         }else{
-            $this->createUser();
+            $this->createUser($wxresult);
         }
         $cacheValue=$this->prepareCacheValue($wxresult);
         $token=$this->saveToCache($cacheValue);
@@ -107,6 +107,7 @@ class UserTokenService extends TokenService
     private function createUser(){
        $user=UserModel::create([
             'openid'=>$this->openid,
+           
         ]);
         return $this->user_id=$user->id;
     }

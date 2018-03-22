@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-03-21 15:12:12
+-- Generation Time: 2018-03-22 18:08:55
 -- 服务器版本： 10.1.9-MariaDB
 -- PHP Version: 7.0.1
 
@@ -74,15 +74,7 @@ CREATE TABLE IF NOT EXISTS `chj_admin_role` (
   `role_id` int(11) NOT NULL COMMENT '角色id',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 转存表中的数据 `chj_admin_role`
---
-
-INSERT INTO `chj_admin_role` (`id`, `admin_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, '2018-01-31 00:10:41', '2018-01-31 00:10:41'),
-(2, 3, 2, '2018-01-31 00:10:49', '2018-01-31 00:10:49');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -100,12 +92,26 @@ CREATE TABLE IF NOT EXISTS `chj_blog` (
   `deadline` int(10) unsigned DEFAULT '0' COMMENT '结束时间',
   `address` varchar(100) NOT NULL COMMENT '地点',
   `contact_phone` varchar(100) DEFAULT NULL COMMENT '联系电话',
+  `latitude` varchar(50) DEFAULT NULL COMMENT '纬度',
+  `longtitude` varchar(50) DEFAULT NULL COMMENT '经度',
   `create_time` int(10) unsigned DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) unsigned DEFAULT '0' COMMENT '更新时间',
   `discuss` int(10) unsigned DEFAULT '0' COMMENT '评论数',
   `approve` int(10) unsigned DEFAULT '0' COMMENT '点赞数',
   `status` tinyint(1) unsigned DEFAULT '1' COMMENT '状态  1正常、0禁用'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='博客表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='博客表';
+
+--
+-- 转存表中的数据 `chj_blog`
+--
+
+INSERT INTO `chj_blog` (`id`, `user_id`, `section_id`, `title`, `content`, `start_time`, `deadline`, `address`, `contact_phone`, `latitude`, `longtitude`, `create_time`, `update_time`, `discuss`, `approve`, `status`) VALUES
+(1, 2, 1, '特色dd是', 'dddsd', 1541980800, 0, '1112', '', '22', '33', 1521711229, 1521712888, 0, 0, 1),
+(2, 2, 1, '特色dd是', 'dddsd', 1541980800, 0, '1112', '', '22', '33', 1521712616, 1521712898, 0, 0, 1),
+(3, 1, 1, '特色dd是', 'dddsd', 1541980800, 0, '1112', '', '22', '33', 1521712690, 1521713225, 0, 0, 1),
+(4, 1, 1, '特色是', 'dddsd', 1541980800, 0, '1112', '', NULL, NULL, 1521712812, 1521712812, 0, 0, 1),
+(5, 1, 1, '特色dd是', 'dddsd', 1541980800, 0, '1112', '', NULL, NULL, 1521712816, 1521712816, 0, 0, 1),
+(6, 1, 1, '特色dd是', 'dddsd', 1541980800, 0, '1112', '', NULL, NULL, 1521712863, 1521712863, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +156,21 @@ CREATE TABLE IF NOT EXISTS `chj_blog_img` (
   `blog_id` int(10) unsigned NOT NULL COMMENT '博客id',
   `url` varchar(50) NOT NULL COMMENT 'url地址',
   `status` tinyint(1) unsigned DEFAULT '1' COMMENT '状态  1正常、0禁用'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='博客图片表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='博客图片表';
+
+--
+-- 转存表中的数据 `chj_blog_img`
+--
+
+INSERT INTO `chj_blog_img` (`id`, `blog_id`, `url`, `status`) VALUES
+(7, 4, 'jjjs.png', 1),
+(8, 4, 'eerr.jpg', 1),
+(9, 5, 'jjjs.png', 1),
+(10, 5, 'eerr.jpg', 1),
+(11, 6, 'jjjs.png', 1),
+(12, 6, 'eerr.jpg', 1),
+(13, 3, 'jjjs.png', 1),
+(14, 3, 'eerr.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `chj_department` (
   `id` int(11) NOT NULL COMMENT '院系ID',
   `sid` int(11) NOT NULL COMMENT 'school id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'department 名字'
-) ENGINE=InnoDB AUTO_INCREMENT=30044 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8434 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `chj_department`
@@ -9210,12 +9230,21 @@ CREATE TABLE IF NOT EXISTS `chj_system` (
 
 CREATE TABLE IF NOT EXISTS `chj_user` (
   `id` int(10) unsigned NOT NULL COMMENT '用户id',
-  `name` varchar(100) NOT NULL COMMENT '用户名',
-  `opend_id` varchar(100) NOT NULL COMMENT '微信opendid',
+  `name` varchar(100) DEFAULT NULL COMMENT '用户名',
+  `openid` varchar(100) NOT NULL COMMENT '微信opendid',
+  `longitude` varchar(100) DEFAULT NULL COMMENT '经度',
+  `latitude` varchar(100) DEFAULT NULL COMMENT '纬度',
   `create_time` int(10) unsigned DEFAULT '0' COMMENT '创建时间',
   `update_time` int(10) unsigned DEFAULT '0' COMMENT '更新时间',
   `status` tinyint(1) unsigned DEFAULT '1' COMMENT '状态  1正常、0禁用'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+--
+-- 转存表中的数据 `chj_user`
+--
+
+INSERT INTO `chj_user` (`id`, `name`, `openid`, `longitude`, `latitude`, `create_time`, `update_time`, `status`) VALUES
+(1, NULL, 'ox0nr0I_KoDb5WFBbXw42FapGXfc', NULL, NULL, 1521699870, 1521699870, 1);
 
 -- --------------------------------------------------------
 
@@ -9378,12 +9407,12 @@ ALTER TABLE `chj_admins`
 -- AUTO_INCREMENT for table `chj_admin_role`
 --
 ALTER TABLE `chj_admin_role`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `chj_blog`
 --
 ALTER TABLE `chj_blog`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '博客id';
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '博客id',AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `chj_blog_approve`
 --
@@ -9398,12 +9427,12 @@ ALTER TABLE `chj_blog_discuss`
 -- AUTO_INCREMENT for table `chj_blog_img`
 --
 ALTER TABLE `chj_blog_img`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '图片id';
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '图片id',AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `chj_department`
 --
 ALTER TABLE `chj_department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '院系ID',AUTO_INCREMENT=30044;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '院系ID',AUTO_INCREMENT=8434;
 --
 -- AUTO_INCREMENT for table `chj_level`
 --
@@ -9453,7 +9482,7 @@ ALTER TABLE `chj_system`
 -- AUTO_INCREMENT for table `chj_user`
 --
 ALTER TABLE `chj_user`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id';
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

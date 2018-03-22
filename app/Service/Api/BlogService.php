@@ -1,0 +1,57 @@
+<?php
+namespace App\Service\Api;
+use App\Models\BlogModel;
+use App\Models\BlogImgModel;
+class BlogService{
+    
+    public function create($request,$user_id){
+        $blog=BlogModel::create([
+            'user_id'=>$user_id,
+            'section_id'=>$request->section_id,
+            'title'=>$request->title,
+            'content'=>$request->content,
+            'start_time'=>strtotime($request->start_time),
+            'deadline'=>($request->deadline?$request->deadline:0),
+            'address'=>$request->address,
+            'contact_phone'=>($request->contact_phone?$request->contact_phone:''),
+            'longtitude'=>($request->longtitude?$request->longtitude:''),
+            'latitude'=>($request->latitude?$request->latitude:''),
+        ]);
+        $images=[];
+        if ($request->images){
+            foreach ($request->images as $v){
+                $images[]=['url'=>$v];
+            }
+            $blog->images()->createMany($images);
+        }
+        return $blog;
+    }
+    
+    
+    public function update($request,$user_id){
+        $blog=BlogModel::where(['id'=>$request->id,'user_id'=>$user_id])->first();
+        if ($blog){
+            $blog->section_id=$request->section_id;
+            $blog->title=$request->title;
+            $blog->content=$request->content;
+            $blog->start_time=strtotime($request->start_time);
+            $blog->deadline=($request->deadline?$request->deadline:0);
+            $blog->address=$request->address;
+            $blog->contact_phone=($request->contact_phone?$request->contact_phone:'');
+            $blog->longtitude=($request->longtitude?$request->longtitude:'');
+            $blog->latitude=($request->latitude?$request->latitude:'');
+            $blog->save();
+            BlogImgModel::where(['blog_id'=>$request->id])->delete();
+            $images=[];
+            if ($request->images){
+                foreach ($request->images as $v){
+                    $images[]=['url'=>$v];
+                }
+                $blog->images()->createMany($images);
+            }
+            return $blog;
+        }
+        return false;
+    }
+    
+}
