@@ -16,19 +16,30 @@ class BlogController extends Controller
        
     }
     
-    
-    public function createBlog(Request $request){
+    /**
+     * 新增blog
+     * @method POST
+     * @url /api/blog
+     * @param Request $request
+     * @return \App\Service\Api\unknown
+     * ***/
+    public function store(Request $request){
          (new BlogValidate())->goCheck();
-         $blog=new BlogService();
          $userId=TokenService::getCurrentUid();
-         return $blog->create($request,$userId);
+         return BlogService::create($request,$userId);
     }
     
-    public function updateBlog(Request $request){
+    /**
+     * 更新blog
+     * @method PUT|PATCH
+     * @url /api/blog/{blog}
+     * @param Request $request
+     * @return boolean
+     * ***/
+    public function update(Request $request){
         (new BlogValidate())->goCheck();
-        $blog=new BlogService();
         $userId=TokenService::getCurrentUid();
-        return $blog->update($request,$userId);
+        return $blog=BlogService::update($request,$userId);
     }
 }
 

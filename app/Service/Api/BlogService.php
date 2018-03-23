@@ -4,7 +4,13 @@ use App\Models\BlogModel;
 use App\Models\BlogImgModel;
 class BlogService{
     
-    public function create($request,$user_id){
+    /**
+     * 新增
+     * @param unknown $request
+     * @param unknown $user_id
+     * @return unknown
+     * ***/
+    public static function create($request,$user_id){
         $blog=BlogModel::create([
             'user_id'=>$user_id,
             'section_id'=>$request->section_id,
@@ -27,9 +33,14 @@ class BlogService{
         return $blog;
     }
     
-    
-    public function update($request,$user_id){
-        $blog=BlogModel::where(['id'=>$request->id,'user_id'=>$user_id])->first();
+    /**
+     * 更新
+     * @param unknown $request
+     * @param unknown $user_id
+     * @return unknown|boolean
+     * ***/
+    public static function update($request,$user_id){
+        $blog=BlogModel::where(['id'=>$request->blog,'user_id'=>$user_id])->first();
         if ($blog){
             $blog->section_id=$request->section_id;
             $blog->title=$request->title;
@@ -41,7 +52,7 @@ class BlogService{
             $blog->longtitude=($request->longtitude?$request->longtitude:'');
             $blog->latitude=($request->latitude?$request->latitude:'');
             $blog->save();
-            BlogImgModel::where(['blog_id'=>$request->id])->delete();
+            BlogImgModel::where(['blog_id'=>$request->blog])->delete();
             $images=[];
             if ($request->images){
                 foreach ($request->images as $v){

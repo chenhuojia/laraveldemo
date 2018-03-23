@@ -6,7 +6,8 @@ use App\Validates\BaseValidate;
 class UserValidator extends BaseValidate
 {
     public $rules=[
-        'token'=>'required'
+        'token'=>'required',
+        'school_id'=>'required|integer'
     ];
     
     public $message=[
