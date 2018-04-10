@@ -24,17 +24,20 @@ class TokenService
      * @throws Exception
      * @return mixed
      * ***/
-    public static function getCurrentTokenVar($key){
+    public static function getCurrentTokenVar($key=''){
         $token=request()->header('token');
         $vars=cache($token);
         if (empty($vars)){
             throw new TokenException();
         }
         if (!is_array($vars)) $vars=json_decode($vars,true);
-        if (!array_key_exists($key,$vars)){
-            throw new TokenException(['msg'=>'该Token已失效']);
+        if($key){
+            if (!array_key_exists($key,$vars)){
+                throw new TokenException(['msg'=>'该Token已失效']);
+            }
+            return $vars[$key];
         }
-        return $vars[$key];
+        return $vars;
     }
     
     /**
