@@ -8,7 +8,7 @@ class IndexController   extends  Controller
     
     public function index(){
         
-        return 12345;
+        return [12,23];
     }
     
 }
