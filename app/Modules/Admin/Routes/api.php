@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/admin', function (Request $request) {
+/* Route::get('/admin', function (Request $request) {
     // return $request->admin();
-})->middleware('auth:api');
+})->middleware('auth:api'); */
+
+Route::get('admin/index/index','IndexController@index');
