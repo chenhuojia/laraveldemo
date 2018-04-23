@@ -6,11 +6,17 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "aws/aws-sdk-php": "^3.54",
+        "barryvdh/laravel-debugbar": "^3.1",
+        "caffeinated/modules": "v4.3.2",
+        "chj/tree": "^1.0",
         "dingo/api": "2.0.0-alpha1",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-	"caffeinated/modules": "v4.3.2"
+        "pda/pheanstalk": "^3.1",
+        "predis/predis": "^1.1",
+        "zhuzhichao/ip-location-zh": "^2.4"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

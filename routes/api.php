@@ -19,8 +19,13 @@
 
 $api=app('Dingo\Api\Routing\Router');
 $api->version('v1',function ($api){
-    $api->group(['namespace'=>'App\Http\Controllers\Api'],function ($api){
-        //获取token
+    
+	
+	$api->group(['namespace'=>'App\Http\Controllers\Api'],function ($api){
+    
+	$api->get('send-test','V1\IndexController@index');	
+
+	//获取token
         $api->post('user-token','V1\TokenController@getToken');
         //所有学校
         $api->get('school','V1\SchoolController@school');
