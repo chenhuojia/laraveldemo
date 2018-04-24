@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\AdminAuth' => [
             'App\Listeners\AdminAuthListener',
         ],
+        'App\Events\Test' => [
+            'App\Listeners\TestListener',
+        ],
     ];
 
     /**

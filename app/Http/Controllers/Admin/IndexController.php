@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Events\Test;
 
 class IndexController extends Controller{
     
@@ -11,4 +12,11 @@ class IndexController extends Controller{
         return view('admin.index.index');
     }
 
+    
+    
+    public function indexTest(){
+        
+        
+        return event(new Test());
+    }
 }

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',['uses'=>'Admin\IndexController@index','middleware' => 'rbac']);
+
+Route::get('/test',['uses'=>'Admin\IndexController@indexTest']);
 Route::group(['namespace' => 'Admin','prefix'=>'admin'],function (){
         Route::get('login','LoginController@index')->name('admin.login'); //登录页面
         Route::post('login-handle','LoginController@login')->name('login.handle'); //登录操作
