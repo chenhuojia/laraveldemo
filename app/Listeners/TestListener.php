@@ -28,13 +28,13 @@ class TestListener implements ShouldQueue
     /**
      * 失败事件处理器
      *
-     * @param  \App\Events\OrderShipped  $event
+     * @param  \App\Events\Test  $event
      * @param  \Exception  $exception
      * @return void
      */
     public function failed(Test $event, $exception)
     {
-        dd($exception);
+        dump($event->parmas);
     }
     
 }
