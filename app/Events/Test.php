@@ -3,7 +3,7 @@ namespace App\Events;
 use Illuminate\Console\Scheduling\Event;
 class Test extends Event
 {   
-    protected $parmas;
+    public $parmas;
     
     public function __construct( $parmas=[])
     {
