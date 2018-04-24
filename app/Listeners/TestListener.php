@@ -23,11 +23,12 @@ class TestListener implements ShouldQueue
      */
     public function handle(Test $event)
     {   
-        /* $this->release(10);
+        $this->release(10);
+        $time=microtime();
         DB::table('users')->insert(
-            ['name' => $event->parmas->id, 'email' =>microtime(),'passwod'=>$event->parmas->id]
-        ); */
-        dd($event->parmas);
+            ['name' => $time, 'email' =>$time,'passwod'=>$time]
+        );
+        return ;
         
     }
     
