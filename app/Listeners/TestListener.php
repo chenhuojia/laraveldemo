@@ -26,7 +26,7 @@ class TestListener implements ShouldQueue
         $this->release(10);
         $time=microtime();
         DB::table('users')->insert(
-            ['name' => $time, 'email' =>$time,'passwod'=>$time]
+            ['name' => $time, 'email' =>$time,'password'=>$time]
         );
         return ;
         
