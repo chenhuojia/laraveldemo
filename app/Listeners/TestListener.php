@@ -34,7 +34,7 @@ class TestListener implements ShouldQueue
      */
     public function failed(Test $event, $exception)
     {
-        dump($event->parmas);
+       // dump($event->parmas);
     }
     
 }
