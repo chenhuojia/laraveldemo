@@ -5,7 +5,7 @@ class Test extends Event
 {   
     protected $parmas;
     
-    public function __construct(array $parmas=[])
+    public function __construct( $parmas=[])
     {
         $this->parmas = $parmas;
     }

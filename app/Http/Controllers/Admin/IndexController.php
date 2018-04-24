@@ -17,6 +17,6 @@ class IndexController extends Controller{
     public function indexTest(){
         
         
-        return event(new Test());
+        return event(new Test(request()->all()));
     }
 }
