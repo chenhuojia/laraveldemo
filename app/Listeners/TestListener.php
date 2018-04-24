@@ -21,12 +21,21 @@ class TestListener implements ShouldQueue
      */
     public function handle(Test $event)
     {   
-        if (true) {
-            $this->release(30);
-        }
-        return dd($event->parmas);
+        
+        dump($event->parmas);
     }
     
+    /**
+     * 失败事件处理器
+     *
+     * @param  \App\Events\OrderShipped  $event
+     * @param  \Exception  $exception
+     * @return void
+     */
+    public function failed(Test $event, $exception)
+    {
+        dd($exception);
+    }
     
 }
 
