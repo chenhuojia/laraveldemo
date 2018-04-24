@@ -3,6 +3,8 @@ namespace App\Listeners;
 use App\Events\Test;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
+
 
 class TestListener implements ShouldQueue
 {
@@ -21,8 +23,11 @@ class TestListener implements ShouldQueue
      */
     public function handle(Test $event)
     {   
+        $this->release(10);
+        DB::table('users')->insert(
+            ['name' => $event->parmas->id, 'email' =>microtime(),'passwod'=>$event->parmas->id]
+        );
         
-        dump($event->parmas);
     }
     
     /**
