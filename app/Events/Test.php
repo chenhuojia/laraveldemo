@@ -2,10 +2,12 @@
 namespace App\Events;
 use Illuminate\Console\Scheduling\Event;
 class Test extends Event
-{
-    public function __construct($post=[])
+{   
+    protected $parmas;
+    
+    public function __construct(array $parmas=[])
     {
-        $this->post = $post;
+        $this->parmas = $parmas;
     }
 }
 
