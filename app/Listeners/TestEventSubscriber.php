@@ -18,7 +18,7 @@ class TestEventSubscriber{
      *
      * @param  Illuminate\Events\Dispatcher  $events
      */
-    public function subscriber($events){
+    public function subscribe($events){
         $events->listen(
             'App\Events\Test',
             'App\Listeners\TestEventSubscriber@onTest'
