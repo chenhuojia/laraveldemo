@@ -19,11 +19,17 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\AdminAuth' => [
             'App\Listeners\AdminAuthListener',
         ],
-        'App\Events\Test' => [
-            'App\Listeners\TestListener',
-        ],
     ];
 
+    /**
+     * 需要注册的订阅者类。
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\TestEventSubscriber',
+    ];
+    
     /**
      * Register any events for your application.
      *
@@ -35,4 +41,6 @@ class EventServiceProvider extends ServiceProvider
 
         //
     }
+    
+    
 }
