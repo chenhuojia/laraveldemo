@@ -18,7 +18,7 @@ class IndexController extends Controller{
     public function indexTest(){
         
        $params=request()->all();
-       SendTest::dispatch($params)->delay(now()->addMinutes(10));
+       SendTest::dispatch($params)->delay(60);
        return $params;
     }
 }
