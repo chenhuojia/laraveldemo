@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Events\Test;
+use App\Jobs\SendTest;
+
 
 class IndexController extends Controller{
     
@@ -17,6 +18,6 @@ class IndexController extends Controller{
     public function indexTest(){
         
         
-        return event(new Test(request()->all()));
+        return SendTest::dispatch(request()->all())->delay(now()->addMinutes(1));
     }
 }
